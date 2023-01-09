@@ -1,21 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "../css/Component.module.css";
+import React, { useEffect, useRef } from "react";
+import { Link, useHref } from "react-router-dom";
 
 const Header = () => {
-    const handleMenuOpen = () =>{
-            const nav = document.querySelector('#primary-navigation')
-            const navToggle = document.querySelector('.mobile-nav-toggle')
-        const visibility = nav.getAttribute("data-visible")
-        if(visibility==='false'){
-            nav.setAttribute("data-visible","true")
-            navToggle.setAttribute("aria-expanded","true")
-        }
-        else{
-            nav.setAttribute("data-visible","false")
-            navToggle.setAttribute("aria-expanded","false")
-        }
+  const refButton = useRef();
+  const href = useHref()
+
+  const handleHeaderClick = (event) => {
+    if (
+      event.target.classList.contains("menu-button") ||
+      event.target.parentElement.classList.contains("menu-button") ||
+      event.target.childNodes.forEach(node => node.nodeName === 'SPAN')
+    ) {
+      refButton.current.childNodes.forEach((child) =>
+        child.setAttribute("aria-selected", false)
+      );
+      if(event.target.nodeName === "A"){
+        event.target.parentElement.setAttribute("aria-selected", true);}
+      else{
+      event.target.setAttribute("aria-selected", true);}
     }
+  };
+
+
+  const handleMenuOpen = () => {
+    const nav = document.querySelector("#primary-navigation");
+    const navToggle = document.querySelector(".mobile-nav-toggle");
+    const visibility = nav.getAttribute("data-visible");
+    if (visibility === "false") {
+      nav.setAttribute("data-visible", "true");
+      navToggle.setAttribute("aria-expanded", "true");
+    } else {
+      nav.setAttribute("data-visible", "false");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  };
 
   return (
     <div className="primary-header flex">
@@ -32,11 +50,13 @@ const Header = () => {
       </button>
       <nav>
         <ul
+          ref={refButton}
+          onClick={handleHeaderClick}
           id="primary-navigation"
           className={`primaryNavigation flex underline-indicators`}
           data-visible={false}
         >
-          <li className="active">
+          <li aria-selected={true} className="menu-button">
             <Link
               className="ff-sans-cond text-accent uppercase letter-spacing-2"
               to="/"
@@ -44,7 +64,7 @@ const Header = () => {
               <span aria-hidden="true">00</span>Home
             </Link>
           </li>
-          <li>
+          <li aria-selected={false} className="menu-button">
             <Link
               className="ff-sans-cond text-accent uppercase letter-spacing-2"
               to="/destination"
@@ -52,7 +72,7 @@ const Header = () => {
               <span aria-hidden="true">01</span>Destination
             </Link>
           </li>
-          <li>
+          <li aria-selected={false} className="menu-button">
             <Link
               className="ff-sans-cond text-accent uppercase letter-spacing-2"
               to="/crew"
@@ -60,7 +80,7 @@ const Header = () => {
               <span aria-hidden="true">02</span>Crew
             </Link>
           </li>
-          <li>
+          <li aria-selected={false} className="menu-button">
             <Link
               className="ff-sans-cond text-accent uppercase letter-spacing-2"
               to="/technology"

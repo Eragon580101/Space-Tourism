@@ -346,6 +346,7 @@ ul {
 
 .primaryNavigation a {
   --underline-gap: 2rem;
+  padding: inherit;
   text-decoration: none;
 }
 .primaryNavigation a > span {
@@ -378,7 +379,7 @@ ul {
     transition: transform ease-in-out 500ms;
   }
 
-  .primaryNavigation.underline-indicators > .active {
+  .primaryNavigation.underline-indicators > [aria-selected="true"] {
     border: 0;
   }
 
@@ -468,12 +469,12 @@ ul {
 }
 
 .numberIndicators > * {
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
   font-size: var(--fs-600);
   background: none;
-  border: 0.2rem solid hsl(var(--clr-white) / 0.5);
+  border: 0.1rem solid hsl(var(--clr-white) / 0.5);
   color: hsl(var(--clr-white) / 1);
 }
 
@@ -635,13 +636,44 @@ ul {
   font-size: 1.75rem;
 }
 
-
-
-
 .crew-details  h2{
   color: hsl(var(--clr-light)/0.5);
 }
 
+/* Technology Page */
+
+.grid-container--technology {
+  --flow-space: 2rem;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "contentss";
+}
+
+.numbersIndicators--row{
+  flex-direction: row;
+}
+
+.grid-container--technology > .numbered-title{
+  justify-self: center;
+}
+
+.grid-container--technology > .landscape {
+  grid-column: 1/-1;
+  grid-area: image;
+}
+.grid-container--technology > .potrait {
+  display: none;
+}
+
+.grid-container--technology > .numberIndicators {
+  grid-area: tabs;
+}
+
+.grid-container--technology > .tech-info{
+  grid: contentss;
+}
 
 @media (min-width: 35em) {
   .numbered-title {
@@ -672,6 +704,10 @@ ul {
   .crew-details {
     --gap: min(8vw, 6rem);
     justify-content: start;
+  }
+
+  .grid-container--technology > .numbered-title{
+    justify-self: left;
   }
 }
 
@@ -729,4 +765,39 @@ ul {
   /* .grid-container--crew > picture {
     align-self: flex-end;
   } */
+
+  .grid-container--technology {
+    grid-template-areas:
+    "title title title title"
+    "tabs contentss image image"
+    "tabs contentss image image"
+  }
+
+  .grid-container--technology > .numberIndicators{
+    align-self: start;
+    margin-left: 3rem;
+    flex-direction: column;
+  }
+
+  .grid-container--technology > .numberIndicators > * {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .grid-container--technology > .numbered-title{
+    margin-left: 10rem;
+  }
+
+  .grid-container--technology  > .landscape{
+    display: none;
+  }
+
+  .grid-container--technology > .potrait{
+    grid-area: image;
+    margin-inline: 0 ;
+    height: 100%;
+    display: block;
+    justify-self: end;
+  }
 }
+

@@ -12,17 +12,17 @@ const InteractiveElements = () => {
       <div>
         <nav>
           <ul className={`${styles.primaryNavigation} flex underline-indicators`}>
-            <li className="active">
+            <li aria-selected='true' className="active">
               <a className="text-accent uppercase letter-spacing-2" href="#">
                 <span>01</span>Active
               </a>
             </li>
-            <li>
+            <li aria-selected='false'>
               <a className="text-accent uppercase letter-spacing-2" href="#">
                 <span>02</span>Hovered
               </a>
-            </li>
-            <li>
+            </li >
+            <li aria-selected='false'>
               <a className="text-accent uppercase letter-spacing-2" href="#">
                 <span>03</span>Idle
               </a>

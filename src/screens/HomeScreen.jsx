@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import styles from "../css/Component.module.css";
 
@@ -24,12 +25,12 @@ const HomeScreen = () => {
           </p>
         </div>
         <div>
-          <a
-            href="#"
+          <Link
+            to="/destination"
             className={`largeButton uppercase ff-serif text-dark bg-white`}
           >
             Explore
-          </a>
+          </Link>
         </div>
       </main>
   );
