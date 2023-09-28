@@ -8,7 +8,7 @@ Design was is taken from [Frontend Mentor](https://www.frontendmentor.io/challen
 ## Project setup
 #### First clone the repository
 ``` bash
-git clone https://github.com/Eragon580101/Space-Tourism
+git clone https://github.com/nabinthapaa/Space-Tourism
 ```
 
 #### Then install the dependencies
